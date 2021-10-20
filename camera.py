@@ -78,34 +78,36 @@ class VideoCamera(object):
         font_size = 1.1
         font_color = BLACK
         font_thickness = 2
+        frame_counter = 0
         while self.video.isOpened():
             _, frame = self.video.read()
 
             # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-            image = self.model(frame, size=640)
-            names = image.names
-            # image = image.imgs[0]
-            coord = image.xyxy[0].detach().cpu().numpy()
+            if frame_counter % self.hop == 0:
+                image = self.model(frame, size=640)
+                names = image.names
+                # image = image.imgs[0]
+                coord = image.xyxy[0].detach().cpu().numpy()
 
-            for (x1, y1, x2, y2, conf, name) in coord:
-                #     print((x1, y1, x2, y2, conf, name))
-                cv2.rectangle(
-                    frame,
-                    (int(x1), int(y1)),
-                    (int(x2), int(y2)),
-                    (255, 245, 67),
-                    2,
-                )
-                cv2.putText(
-                    frame,
-                    f"{names[int(name)]} {100*conf:.0f}%",
-                    (int(x1), int(y1)),
-                    font,
-                    font_size,
-                    font_color,
-                    font_thickness,
-                    cv2.LINE_AA,
-                )
+                for (x1, y1, x2, y2, conf, name) in coord:
+                    #     print((x1, y1, x2, y2, conf, name))
+                    cv2.rectangle(
+                        frame,
+                        (int(x1), int(y1)),
+                        (int(x2), int(y2)),
+                        (255, 245, 67),
+                        2,
+                    )
+                    cv2.putText(
+                        frame,
+                        f"{names[int(name)]} {100*conf:.0f}%",
+                        (int(x1), int(y1)),
+                        font,
+                        font_size,
+                        font_color,
+                        font_thickness,
+                        cv2.LINE_AA,
+                    )
 
             frame = cv2.imencode(".jpg", frame)[1].tobytes()
             yield (
