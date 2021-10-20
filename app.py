@@ -29,6 +29,11 @@ def hand_detect_page():
 
 
 @app.route("/yolo")
+def yolo_mainpage():
+    return render_template("yolo.html")
+
+
+@app.route("/yoloer")
 def yolo_page():
     return Response(
         video_stream.predict_yolo(),
