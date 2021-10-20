@@ -21,9 +21,17 @@ def eye_detect_page():
 
 
 @app.route("/hand_detect")
-def hand_detect():
+def hand_detect_page():
     return Response(
         video_stream.detect_hands(),
+        mimetype="multipart/x-mixed-replace; boundary=frame",
+    )
+
+
+@app.route("/yolo")
+def yolo_page():
+    return Response(
+        video_stream.predict_yolo(),
         mimetype="multipart/x-mixed-replace; boundary=frame",
     )
 
