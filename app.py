@@ -1,4 +1,5 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template
+from flask.wrappers import Response
 from camera import VideoCamera
 
 app = Flask(__name__)
@@ -28,4 +29,4 @@ def hand_detect():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", debug=True, port="5000")
+    app.run(host="127.0.0.1", debug=True, port=5000, threaded=True)
