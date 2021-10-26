@@ -19,8 +19,9 @@ class VideoCamera(object):
         self.hop = round(fps / sample_rate)
         # if use_model:
         #     self.model = torch.load(r"models/best.pt")
-        self.model = torch.hub.load("ultralytics/yolov5", "yolov5s")
+        self.model = torch.hub.load("ultralytics/yolov5", "yolov5l")
         self.model.conf = 0.5
+        self.seq = []
 
     def __del__(self):
         self.video.release()
@@ -84,6 +85,7 @@ class VideoCamera(object):
 
             # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
             if frame_counter % self.hop == 0:
+                frame_counter
                 image = self.model(frame, size=640)
                 names = image.names
                 # image = image.imgs[0]

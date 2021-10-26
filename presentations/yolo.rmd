@@ -35,8 +35,11 @@ urlcolor: blue
 
 # Yolo Algorithm
 
-
 ![Detection Algorithm](img/yolo_architecture.png){width=70%}
+
+# Yolo Algorithm
+
+![Available models](img/yolo_models.png)
 
 # Workflow
 
