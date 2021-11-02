@@ -19,7 +19,9 @@ class VideoCamera(object):
         self.hop = round(fps / sample_rate)
         # if use_model:
         #     self.model = torch.load(r"models/best.pt")
-        self.model = torch.hub.load("ultralytics/yolov5", "yolov5l")
+
+        self.model = torch.hub.load('yolo', "custom",path="yolo/runs/train/exp15/weights/best.pt",source='local')
+        # self.model = torch.hub.load("ultralytics/yolov5", "yolov5l")
         self.model.conf = 0.5
         self.seq = []
 
@@ -84,32 +86,36 @@ class VideoCamera(object):
             _, frame = self.video.read()
 
             # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-            if frame_counter % self.hop == 0:
-                frame_counter
-                image = self.model(frame, size=640)
-                names = image.names
-                # image = image.imgs[0]
-                coord = image.xyxy[0].detach().cpu().numpy()
+            # if frame_counter % self.hop == 0:
+            image = self.model(frame, size=320)
+            names = image.names
+            # image = image.imgs[0]
+            coord = image.xyxy[0].detach().cpu().numpy()
 
-                for (x1, y1, x2, y2, conf, name) in coord:
-                    #     print((x1, y1, x2, y2, conf, name))
-                    cv2.rectangle(
-                        frame,
-                        (int(x1), int(y1)),
-                        (int(x2), int(y2)),
-                        (255, 245, 67),
-                        2,
-                    )
-                    cv2.putText(
-                        frame,
-                        f"{names[int(name)]} {100*conf:.0f}%",
-                        (int(x1), int(y1)),
-                        font,
-                        font_size,
-                        font_color,
-                        font_thickness,
-                        cv2.LINE_AA,
-                    )
+            for (x1, y1, x2, y2, conf, name) in coord:
+                #     print((x1, y1, x2, y2, conf, name))
+                cv2.rectangle(
+                    frame,
+                    (int(x1), int(y1)),
+                    (int(x2), int(y2)),
+                    (255, 245, 67),
+                    2,
+                )
+                cv2.putText(
+                    frame,
+                    f"{names[int(name)]} {100*conf:.0f}%",
+                    (int(x1), int(y1)),
+                    font,
+                    font_size,
+                    font_color,
+                    font_thickness,
+                    cv2.LINE_AA,
+                )
+
+            # if coord != []:
+            #     print(f"conf{coord[:,4]}, letter {coord[:,5]}")
+            # else:
+            #     print("No detect")
 
             frame = cv2.imencode(".jpg", frame)[1].tobytes()
             yield (
