@@ -3,9 +3,17 @@
 <html lang="en">
   <head>
     <title>Video Stream</title>
+    <style>
+img{
+  margin: auto;
+  display: block;
+  display: flex;
+}
+    </style>
   </head>
   <body>
-      <p>Hello World</p>
-    <img src="{{ url_for('yolo_page') }}">
+      <div class="video">
+        <img src="{{ url_for('yolo_page') }}">
+      </div>
   </body>
 </html>
