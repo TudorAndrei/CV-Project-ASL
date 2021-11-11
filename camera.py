@@ -29,7 +29,7 @@ class VideoCamera(object):
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            path="yolo/runs/train/exp19/weights/best.pt",
+            path="best.pt",
             source="local",
         )
         # self.model = torch.hub.load("ultralytics/yolov5", "yolov5l")
@@ -43,12 +43,12 @@ class VideoCamera(object):
         self.prection = ""
         self.buffer = deque([" "] * 20)
 
-    def draw_text(self, frame, name,  x, y, conf=None, font_color=None):
+    def draw_text(self, frame, name, x, y, conf=None, font_color=None):
         if font_color is None:
             font_color = self.font_color
         if conf:
             text = f"{name} {100*conf:.0f}%"
-        else :
+        else:
             text = str(name)
 
         (text_w, text_h), _ = cv2.getTextSize(
@@ -153,7 +153,7 @@ class VideoCamera(object):
                         self.buffer.popleft()
                         self.buffer.append(names[int(name)])
 
-            text  = "".join(list(self.buffer))
+            text = "".join(list(self.buffer))
             frame = self.draw_text(
                 frame, name=text, x=5, y=30, font_color=BLUE
             )
