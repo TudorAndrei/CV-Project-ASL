@@ -14,12 +14,6 @@ class VideoCamera(object):
             self.video = cv2.VideoCapture(-1)
         except:
             print("Camera not initialized")
-        self.hand_detector = cv2.CascadeClassifier(
-            cv2.data.haarcascades + "aGest.xml"
-        )
-        self.eye_detector = cv2.CascadeClassifier(
-            cv2.data.haarcascades + "haarcascade_eye.xml"
-        )
         sample_rate = 10
         fps = round(self.video.get(cv2.CAP_PROP_FPS))
         self.hop = round(fps / sample_rate)
@@ -29,7 +23,7 @@ class VideoCamera(object):
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            path="best.pt",
+            path="models/best.pt",
             source="local",
         )
         # self.model = torch.hub.load("ultralytics/yolov5", "yolov5l")
@@ -76,53 +70,6 @@ class VideoCamera(object):
     def __del__(self):
         self.video.release()
 
-    def detect_eyes(self):
-        frame_counter = 0
-        while self.video.isOpened():
-            _, frame = self.video.read()
-            # print(frame.shape)
-
-            if frame_counter % self.hop == 0:
-
-                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                try:
-                    eyes = self.eye_detector.detectMultiScale(gray)
-                    for (x, y, w, h) in eyes:
-                        cv2.rectangle(
-                            frame, (x, y), (x + w, y + h), (255, 245, 67), 10
-                        )
-                except:
-                    print("No detection")
-
-            frame = cv2.imencode(".jpg", frame)[1].tobytes()
-
-            yield (
-                b"--frame\r\n"
-                b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n\r\n"
-            )
-
-    def detect_hands(self):
-        while self.video.isOpened():
-            _, frame = self.video.read()
-
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-            try:
-
-                hands = self.hand_detector.detectMultiScale(gray)
-                for (x, y, w, h) in hands:
-                    cv2.rectangle(
-                        frame, (x, y), (x + w, y + h), (255, 245, 67), 10
-                    )
-            except:
-                print("No detection")
-
-            frame = cv2.imencode(".jpg", frame)[1].tobytes()
-            yield (
-                b"--frame\r\n"
-                b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n\r\n"
-            )
-
     def predict_yolo(self):
         frame_counter = 0
         while self.video.isOpened():
@@ -157,11 +104,6 @@ class VideoCamera(object):
             frame = self.draw_text(
                 frame, name=text, x=5, y=30, font_color=BLUE
             )
-
-            # if coord != []:
-            #     print(f"conf{coord[:,4]}, letter {coord[:,5]}")
-            # else:
-            #     print("No detect")
 
             frame = cv2.imencode(".jpg", frame)[1].tobytes()
             yield (

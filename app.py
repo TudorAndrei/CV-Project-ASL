@@ -12,22 +12,6 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/eye_detect")
-def eye_detect_page():
-    return Response(
-        video_stream.detect_eyes(),
-        mimetype="multipart/x-mixed-replace; boundary=frame",
-    )
-
-
-@app.route("/hand_detect")
-def hand_detect_page():
-    return Response(
-        video_stream.detect_hands(),
-        mimetype="multipart/x-mixed-replace; boundary=frame",
-    )
-
-
 @app.route("/yolo")
 def yolo_mainpage():
     return render_template("yolo.html")
