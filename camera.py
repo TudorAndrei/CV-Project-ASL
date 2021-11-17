@@ -11,7 +11,7 @@ IMG_SIZE = 320
 class VideoCamera(object):
     def __init__(self):
         try:
-            self.video = cv2.VideoCapture(-1)
+            self.video = cv2.VideoCapture(0)
         except:
             print("Camera not initialized")
         sample_rate = 10
