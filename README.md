@@ -1,8 +1,9 @@
 # CV-Project-ASL
 # Clone the yolo project
 
+Create the
 ```
-git clone https://github.com/TudorAndrei/yolov5 yolo
+git submodule update --init --recursive
 ```
 Repository for CV-Camp Final Project
 
