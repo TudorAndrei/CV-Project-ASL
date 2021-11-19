@@ -1,12 +1,8 @@
 from flask import Flask, render_template
 from flask.wrappers import Response
 from camera import VideoCamera
-import threading
-import time
-from turbo_flask import Turbo
 
 app = Flask(__name__)
-turbo = Turbo(app)
 
 video_stream = VideoCamera()
 
@@ -18,26 +14,8 @@ def index():
 
 @app.route("/yolo")
 def yolo_mainpage():
-    return render_template("yolo.html")
+    return render_template("yolo.html", title=video_stream.get_buffer())
 
-
-@app.before_first_request
-def before_first_request():
-    threading.Thread(target=update_load).start()
-
-
-def update_load():
-    with app.app_context():
-        while True:
-            time.sleep(5)
-            turbo.push(
-                turbo.replace(
-                    render_template(
-                        "yolo.html", text=video_stream.get_prediction()
-                    ),
-                    "load",
-                )
-            )
 
 
 @app.route("/yoloer")

@@ -9,9 +9,12 @@ IMG_SIZE = 320
 
 
 class VideoCamera(object):
+
+
+
     def __init__(self):
         try:
-            self.video = cv2.VideoCapture(0)
+            self.video = cv2.VideoCapture(-1)
         except:
             print("Camera not initialized")
         sample_rate = 10
@@ -19,7 +22,6 @@ class VideoCamera(object):
         self.hop = round(fps / sample_rate)
         # if use_model:
         #     self.model = torch.load(r"models/best.pt")
-
         self.model = torch.hub.load(
             "yolo",
             "custom",
@@ -111,5 +113,5 @@ class VideoCamera(object):
                 b"--frame\r\n"
                 b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n\r\n"
             )
-    def get_prediction(self):
+    def get_buffer(self):
         return "".join(list(self.buffer))
