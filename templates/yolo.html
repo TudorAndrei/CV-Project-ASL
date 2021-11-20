@@ -1,41 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-		<title>ASL Project</title>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
-	</head>
-	<body>
-					<div id="main">
-							<section class="posts">
-								<article>
-									<h3>Your word</h3>
-									<blockquote>
-									<h5>Lorem ipsum dolor</h5>
-									</blockquote>
-									<button class="image fit" onclick="show_hide()">Show/Hide ASL Alphabet</button>
-								</article>
-								<article>
-									<h3>Expected word</h3>
-									<blockquote>
-										<h5>{{ the_word }}</h5>
-									</blockquote>
-									<a href="/play"><button class="image fit" onclick="show_hide()">Next Word</button></a>
-								</article>
-							</section>
-								<img class="image main" id="image" src="{{ asl1 }}">
-								<img class="image fit" src="{{ url_for('yolo_page') }}" alt="Translator">
-								<img class="image main" id="image2" src="{{asl2}}">
 
-						<pre>   </pre>
-					</div>
-
-			<!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-			 -->
-       <script src="{{ url_for('static', filename='js/showhideelement.js') }}"></script>
-	</body>
+    <title>Video Stream</title>
+    <style>
+img{
+  margin: auto;
+  display: block;
+  display: flex;
+}
+    </style>
+  </head>
+  <body>
+      {{ text }}
+      <div class="video">
+        <img src="{{ url_for('yolo_page') }}">
+      </div>
+  </body>
 </html>
