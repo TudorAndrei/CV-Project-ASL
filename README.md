@@ -1,7 +1,6 @@
 # CV-Project-ASL
-# Clone the yolo project
 
-Create the
+#  🚩Clone the yolo project
 ```
 git submodule update --init --recursive
 ```
