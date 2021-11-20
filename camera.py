@@ -6,6 +6,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (255, 245, 67)
 IMG_SIZE = 320
+CONF_TRESHOLD = 0.7
 
 
 class VideoCamera(object):
@@ -86,21 +87,22 @@ class VideoCamera(object):
 
                 for (x1, y1, x2, y2, conf, name) in coord:
                     #     print((x1, y1, x2, y2, conf, name))
-                    letter = names[int(name)]
-                    cv2.rectangle(
-                        frame,
-                        (int(x1), int(y1)),
-                        (int(x2), int(y2)),
-                        BLUE,
-                        2,
-                    )
+                    if conf > CONF_TRESHOLD:
+                        letter = names[int(name)]
+                        cv2.rectangle(
+                            frame,
+                            (int(x1), int(y1)),
+                            (int(x2), int(y2)),
+                            BLUE,
+                            2,
+                        )
 
-                    frame = self.draw_text(
-                        frame, letter, int(x1), int(y1), conf
-                    )
-                    if letter != self.buffer[-1]:
-                        self.buffer.popleft()
-                        self.buffer.append(names[int(name)])
+                        frame = self.draw_text(
+                            frame, letter, int(x1), int(y1), conf
+                        )
+                        if letter != self.buffer[-1]:
+                            self.buffer.popleft()
+                            self.buffer.append(names[int(name)])
 
             text = "".join(list(self.buffer))
             frame = self.draw_text(
