@@ -10,7 +10,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (255, 245, 67)
 IMG_SIZE = 320
-CAMERA_INDEX = - 1
+CAMERA_INDEX = 0
 CONF_TRESHOLD = 0.3
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -38,7 +38,7 @@ def get_time(letter):
     now = datetime.datetime.now()
     timestamp = int(round(now.timestamp()))
     last_characters.append([timestamp, letter])
-    # print(last_characters)
+    print(last_characters)
     return last_characters
 
 
@@ -71,7 +71,7 @@ def process_time():
                     # print(output_string)
             else:
                 output_string.append(letter)
-    # print(output_string)
+    print(output_string)
 
 
 def process(confs, letters):
