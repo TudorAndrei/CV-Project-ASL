@@ -94,7 +94,7 @@ class VideoCamera(object):
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            path="models/exp20/best.pt",
+            path="models/best.pt",
             source="local",
         )
 
