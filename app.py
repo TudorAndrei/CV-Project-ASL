@@ -13,6 +13,7 @@ image1 = os.path.join(app.config["UPLOAD_FOLDER"], "ASLalphabet1.png")
 image2 = os.path.join(app.config["UPLOAD_FOLDER"], "ASLalphabet2.png")
 video_stream = VideoCamera()
 
+
 word = "Here will be your word"
 data2 = []
 
@@ -48,6 +49,15 @@ def get_word():
     data.remove(word)
     data2.append(word)
     return render_template("yolo.html", asl1=image1, asl2=image2, the_word=word)
+
+
+@app.route('/_stuff', methods=['GET'])
+def stuff():
+    if video_stream.get_buffer()[-1] != " ":
+        result = video_stream.get_buffer()
+    else:
+        result = "Result"
+    return jsonify(result=result)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", debug=True, port=5000, threaded=True)

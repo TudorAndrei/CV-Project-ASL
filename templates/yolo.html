@@ -2,18 +2,22 @@
 <html lang="en">
   <head>
 		<title>ASL Project</title>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ url_for('static',    filename='css/main.css') }}">
 	</head>
-	<body>
+	<body onload="update_values();">
 					<div id="main">
 							<section class="posts">
 								<article>
 									<h3>Your word</h3>
 									<blockquote>
-									<h5>Lorem ipsum dolor</h5>
+									<h5  id="result">Result</h5>
 									</blockquote>
+									  <script>
+            							document.getElementById("result").innerHTML;
+        							  </script>
 									<button class="image fit" onclick="show_hide()">Show/Hide ASL Alphabet</button>
 								</article>
 								<article>
@@ -21,7 +25,7 @@
 									<blockquote>
 										<h5>{{ the_word }}</h5>
 									</blockquote>
-									<a href="/play"><button class="image fit">Next Word</button></a>
+									<a href="/play"><button class="image fit" onclick="stopTextColor();">Next Word</button></a>
 								</article>
 							</section>
 								<img class="image main" id="image" src="{{ asl1 }}">
@@ -37,5 +41,25 @@
 			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 			 -->
        <script src="{{ url_for('static', filename='js/showhideelement.js') }}"></script>
+	   <script type="text/javascript">
+                var intervalID = setInterval(update_values, 500);
+                $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+                function update_values() {
+                        $.getJSON($SCRIPT_ROOT + '/_stuff',
+
+                    function(data) {
+                        $('#result').text(data.result);
+
+                    });
+
+                    };
+
+
+
+                    function stopTextColor() {
+                    clearInterval(intervalID);
+                    }
+
+</script>
 	</body>
 </html>

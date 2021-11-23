@@ -8,10 +8,10 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (255, 245, 67)
 IMG_SIZE = 320
+
 CAMERA_INDEX = -1
 CONF_TRESHOLD = 0.3
 FONT = cv2.FONT_HERSHEY_SIMPLEX
-
 
 class VideoCamera(object):
     def __init__(self):
