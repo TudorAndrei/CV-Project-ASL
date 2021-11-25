@@ -23,9 +23,9 @@
 								<article>
 									<h3>Expected word</h3>
 									<blockquote>
-										<h5>{{ the_word }}</h5>
+										<h5 id = "demo">A word</h5>
 									</blockquote>
-									<a href="/play"><button class="image fit" onclick="stopTextColor();">Next Word</button></a>
+									<button class="image fit"  onclick="next();">Next Word</button>
 								</article>
 							</section>
 								<img class="image main" id="image" src="{{ asl1 }}">
@@ -34,13 +34,15 @@
 
 						<pre>   </pre>
 					</div>
-
-			<!-- <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
+			
+					
+			<!-- <script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
 			<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
-			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-			 -->
+			<script src="{{ url_for('static', filename='js/main.js') }}"></script>-->
+
+	   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>	 
        <script src="{{ url_for('static', filename='js/showhideelement.js') }}"></script>
+	   <script src="{{ url_for('static', filename='js/next.js') }}"></script>
 	   <script type="text/javascript">
                 var intervalID = setInterval(update_values, 500);
                 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
