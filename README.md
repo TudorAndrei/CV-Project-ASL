@@ -16,7 +16,7 @@ The main goal of the ASL project is to improve the quality of communication for 
 
 ![alt text](static/images/system_design.png?raw=true)
 
-#  🚩Run the Project
+##  🚩Run the Project
 
 ```
 git clone https://github.com/TudorAndrei/CV-Project-ASL.git
