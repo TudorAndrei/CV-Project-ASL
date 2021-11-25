@@ -12,7 +12,7 @@ Learning ASL allows you to communicate with a wide range of hearing, hard of hea
 
 The main goal of the ASL project is to improve the quality of communication for hearing people with deaf or hard of hearing individuals, by helping learners to practice and to develop fluency in Sign Language.
 
-![alt text](https://github.com/TudorAndrei/CV-Project-ASL/static/images/main/system_design.png?raw=true)
+![alt text](https://github.com/TudorAndrei/CV-Project-ASL/static/images/system_design.png?raw=true)
 
 #  🚩Run the Project
 
