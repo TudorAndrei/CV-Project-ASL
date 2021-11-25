@@ -28,3 +28,4 @@ git submodule update --init --recursive
 FLASK_APP=app.py flask run
 ```
 
+## Bibliography
