@@ -13,12 +13,14 @@ Learning ASL allows you to communicate with a wide range of hearing, hard of hea
 The main goal of the ASL project is to improve the quality of communication for hearing people with deaf or hard of hearing individuals, by helping learners to practice and to develop fluency in Sign Language.
 
 
-#  🚩Clone the yolo project
+#  🚩Run the Project
+
+```
+git clone https://github.com/TudorAndrei/CV-Project-ASL.git
+```
 ```
 git submodule update --init --recursive
 ```
-Repository for CV-Camp Final Project
-
 ```
 FLASK_APP=app.py flask run
 ```
