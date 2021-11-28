@@ -1,5 +1,5 @@
 import collections
-from camera_utils import *
+import camera_utils
 
 import cv2
 import torch
@@ -86,7 +86,7 @@ class VideoCamera(object):
 
                 for (x1, y1, x2, y2, conf, name) in coord:
                     # print((x1, y1, x2, y2, conf, name))
-                    process([float(conf)], [int(name)])
+                    camera_utils.process([float(conf)], [int(name)])
                     letter = names[int(name)]
                     cv2.rectangle(
                         frame,
@@ -96,9 +96,9 @@ class VideoCamera(object):
                         2,
                     )
                     self.buffer = collections.deque([" "] * 20)
-                    for i in range(len(output_string)):
+                    for i in range(len(camera_utils.output_string)):
                         self.buffer.popleft()
-                        self.buffer.append(names[int(output_string[i])])
+                        self.buffer.append(names[int(camera_utils.output_string[i])])
                     frame = self.draw_text(
                         frame, letter, int(x1), int(y1), conf
                     )
