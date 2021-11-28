@@ -2,6 +2,10 @@ from flask import Flask, request, jsonify, render_template
 from flask.wrappers import Response
 from camera import VideoCamera
 import random, os
+from camera import *
+import camera_utils
+from camera_utils import *
+import camera
 
 app = Flask(__name__)
 
@@ -36,6 +40,13 @@ def stuff():
     else:
         result = "Result"
     return jsonify(result=result)
+
+@app.route("/reload")
+def initialize():
+    camera_utils.output_string = []
+    last_characters.clear()
+    video_stream.buffer = collections.deque([" "] * 20)
+    return '', 204
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", debug=True, port=5000, threaded=True)

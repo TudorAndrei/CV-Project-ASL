@@ -13,7 +13,7 @@
 								<article>
 									<h3>Your word</h3>
 									<blockquote>
-									<h5  id="result">Result</h5>
+									<h5 id="result">Result</h5>
 									</blockquote>
 									  <script>
             							document.getElementById("result").innerHTML;
@@ -25,7 +25,7 @@
 									<blockquote>
 										<h5 id = "demo">A word</h5>
 									</blockquote>
-									<button class="image fit"  onclick="next();">Next Word</button>
+									<button class="image fit"  onclick="next();reinitialize_values();">Next Word</button>
 								</article>
 							</section>
 								<img class="image main" id="image" src="{{ asl1 }}">
@@ -62,6 +62,12 @@
                     clearInterval(intervalID);
                     }
 
-</script>
+       </script>
+	   <script type="text/javascript">
+                $SCRIPT_ROOT = {{request.script_root|tojson|safe }};
+                function reinitialize_values() {
+                    $.getJSON($SCRIPT_ROOT + '/reload');
+				};
+       </script>
 	</body>
 </html>
