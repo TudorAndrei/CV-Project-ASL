@@ -45,7 +45,16 @@ def stuff():
 def initialize():
     camera_utils.output_string = []
     last_characters.clear()
+    camera_utils.output_string = []
     video_stream.buffer = collections.deque([" "] * 20)
+    return '', 204
+
+@app.route("/correct")
+def correct_values():
+    last_characters.clear()
+    camera_utils.output_string.pop(-1)
+    video_stream.buffer.pop()
+    video_stream.buffer.insert(1, " ")
     return '', 204
 
 if __name__ == "__main__":

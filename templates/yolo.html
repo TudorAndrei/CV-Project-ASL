@@ -27,6 +27,9 @@
 									</blockquote>
 									<button class="image fit"  onclick="next();reinitialize_values();">Next Word</button>
 								</article>
+
+								<button class="image fit"  onclick="correct();">Reinitialize</button>
+
 							</section>
 								<img class="image main" id="image" src="{{ asl1 }}">
 								<img class="image fit" src="{{ url_for('yolo_page') }}" alt="Translator">
@@ -67,6 +70,12 @@
                 $SCRIPT_ROOT = {{request.script_root|tojson|safe }};
                 function reinitialize_values() {
                     $.getJSON($SCRIPT_ROOT + '/reload');
+				};
+       </script>
+		<script type="text/javascript">
+                $SCRIPT_ROOT = {{request.script_root|tojson|safe }};
+                function correct() {
+                    $.getJSON($SCRIPT_ROOT + '/correct');
 				};
        </script>
 	</body>
