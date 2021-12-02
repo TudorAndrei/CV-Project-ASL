@@ -26,7 +26,8 @@ class VideoCamera(object):
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            path="models/best.pt",
+            # path="models/best.pt",
+            path="models/train_small/best.pt",
             source="local",
         )
 
@@ -103,9 +104,9 @@ class VideoCamera(object):
                         frame, letter, int(x1), int(y1), conf
                     )
             # print(self.buffer)
-            frame = self.draw_text(
-                frame, name=self.get_buffer(), x=5, y=30, font_color=BLUE
-            )
+            # frame = self.draw_text(
+            #     frame, name=self.get_buffer(), x=5, y=30, font_color=BLUE
+            # )
 
             frame = cv2.imencode(".jpg", frame)[1].tobytes()
             yield (
