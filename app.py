@@ -38,7 +38,7 @@ def stuff():
     if video_stream.get_buffer()[-1] != " ":
         result = video_stream.get_buffer()
     else:
-        result = "Result"
+        result = "RESULT"
     return jsonify(result=result)
 
 @app.route("/reload")
