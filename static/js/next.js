@@ -1,9 +1,9 @@
-const arr =  ['mother', 'father', 'brother', 'sister', 'hi', 'maple', 'pear', 'you', 'one']
+const arr =  ['MOTHER', 'FATHER', 'BROTHER', 'SISTER', 'HI', 'BYE']
   
 var i = 0;
 
 function next() {
-if (i != 8) {
+if (i != 5) {
     i++;
     return setNo();
 } else {
