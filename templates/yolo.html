@@ -18,7 +18,7 @@
 									  <script>
             							document.getElementById("result").innerHTML;
         							  </script>
-									<button class="image fit" onclick="show_hide()">Show/Hide ASL Alphabet</button>
+									<button class="image fit"  onclick="correct();">Reinitialize</button>
 								</article>
 								<article>
 									<h3>Expected word</h3>
@@ -28,9 +28,10 @@
 									<button class="image fit"  onclick="next();reinitialize_values();">Next Word</button>
 								</article>
 
-								<button class="image fit"  onclick="correct();">Reinitialize</button>
+
 
 							</section>
+								<button class="image fit" onclick="show_hide()">Show/Hide ASL Alphabet</button>
 								<img class="image main" id="image" src="{{ asl1 }}">
 								<img class="image fit" src="{{ url_for('yolo_page') }}" alt="Translator">
 								<img class="image main" id="image2" src="{{asl2}}">
