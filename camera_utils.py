@@ -9,6 +9,7 @@ string_to_process = []
 
 letter = 0
 confs = 0
+ACC = 10
 
 
 def get_one_letter(confs, letters):
@@ -41,17 +42,22 @@ def get_necessary_letter(the_dic):
 
 def process_time():
     global timestamp, last_characters, output_string
+    # print(last_characters)
+    # print(output_string)
     if (timestamp - last_characters[0][0]) >= 3:
         for i in range(len(last_characters)):
-            if last_characters[i][1]:
+            if last_characters[i][1] is not []:
                 string_to_process.append(last_characters[i][1])
         last_characters.clear()
+        # print(string_to_process)
     if string_to_process:
+        # print(last_characters)
         dic = create_dic(string_to_process)
         letter = get_necessary_letter(dic)
         string_to_process.clear()
         # print((dic[letter] * 100) / sum(dic.values()))
-        if (dic[letter] * 100) / sum(dic.values()) >= 90:
+        if (dic[letter] * 100) / sum(dic.values()) >= ACC:
+            # print(output_string)
             if output_string:
                 if output_string[-1] != letter:
                     output_string.append(letter)
@@ -63,6 +69,8 @@ def process_time():
 
 def process(confs, letters):
     global output_string
+    # print(confs, letters)
     _, letters_ = get_one_letter(confs, letters)
+    # print(letters_)
     get_time(letters_)
     process_time()

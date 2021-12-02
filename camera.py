@@ -19,15 +19,15 @@ class VideoCamera(object):
             self.video = cv2.VideoCapture(CAMERA_INDEX)
         except:
             print("Camera not initialized")
-        sample_rate = 10
+        sample_rate = 30
         fps = round(self.video.get(cv2.CAP_PROP_FPS))
         self.hop = round(fps / sample_rate)
 
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            # path="models/best.pt",
-            path="models/train_small/best.pt",
+            path="models/best.pt",
+            # path="models/train_medium/best.pt",
             source="local",
         )
 
