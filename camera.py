@@ -7,7 +7,7 @@ import torch
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 BLUE = (255, 245, 67)
-IMG_SIZE = 320
+IMG_SIZE = 640
 
 CAMERA_INDEX = 0
 CONF_TRESHOLD = 0.3
@@ -26,8 +26,8 @@ class VideoCamera(object):
         self.model = torch.hub.load(
             "yolo",
             "custom",
-            path="models/best.pt",
-            # path="models/train_medium/best.pt",
+            # path="models/best.pt",
+            path="models/train_medium/best.pt",
             source="local",
         )
 

@@ -1,4 +1,4 @@
-const arr =  ['MOTHER', 'FATHER', 'BROTHER', 'SISTER', 'HI', 'BYE']
+const arr =  ['BYE', 'CVC', 'HI', 'WHAT', 'OK', 'ONE']
   
 var i = 0;
 

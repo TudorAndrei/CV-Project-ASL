@@ -9,7 +9,7 @@ string_to_process = []
 
 letter = 0
 confs = 0
-ACC = 10
+ACC = 30
 
 
 def get_one_letter(confs, letters):
